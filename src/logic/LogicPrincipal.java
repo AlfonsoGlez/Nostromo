@@ -34,7 +34,7 @@ public class LogicPrincipal {
 	 * @throws SQLException
 	 */
 	public static void lgConsEquipo() throws SQLException {
-		logic.logicEquipo.dbConsEquipo();
+		LogicEquipo.dbConsEquipo();
 
 	}
 

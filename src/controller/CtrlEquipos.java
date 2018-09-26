@@ -64,7 +64,7 @@ public class CtrlEquipos {
 		try {
 			Connection c = databasemanager.DBsqlServer.establecerConexion();
 			Statement s = c.createStatement();
-			String strSQL = logic.logicEquipo.sqlEquipo;
+			String strSQL = logic.LogicEquipo.sqlEquipo;
 			ResultSet r = s.executeQuery(strSQL);
 			ResultSetMetaData md = r.getMetaData();
 			int totalCampos = md.getColumnCount();

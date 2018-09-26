@@ -20,27 +20,28 @@ public class FrmTrabajador extends JFrame {
 
 	public FrmTrabajador() {
 		getContentPane().setBackground(Color.WHITE);
-		setIconImage(Toolkit.getDefaultToolkit().getImage("Img\\FlyMasterSmall.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("img\\230pxCM_Seal.png"));
 		initialize();
 	}
 
 	private void initialize() {
 		setTitle("Trabajadores");
-		setBounds(100, 100, 560, 465);
+		setBounds(100, 100, 625, 465);
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		getContentPane().setLayout(null);
 
 		JButton btnNuevo = new JButton("Nuevo");
-		btnNuevo.setIcon(new ImageIcon("Img\\A\u00F1adir.png"));
+		btnNuevo.setIcon(new ImageIcon("img\\anadir.png"));
 		btnNuevo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				controller.CtrlTrabajadores.crearNuevoTrabajador();
 			}
 		});
-		btnNuevo.setBounds(27, 356, 99, 33);
+		btnNuevo.setBounds(10, 356, 115, 33);
 		getContentPane().add(btnNuevo);
 
 		JButton btnBorrar = new JButton("Borrar");
-		btnBorrar.setIcon(new ImageIcon("Img\\Borrar.png"));
+		btnBorrar.setIcon(new ImageIcon("img\\borrar.png"));
 		btnBorrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
@@ -55,11 +56,11 @@ public class FrmTrabajador extends JFrame {
 
 			}
 		});
-		btnBorrar.setBounds(162, 356, 97, 33);
+		btnBorrar.setBounds(162, 356, 115, 33);
 		getContentPane().add(btnBorrar);
 
 		JButton btnEditar = new JButton("Editar");
-		btnEditar.setIcon(new ImageIcon("Img\\Editar.png"));
+		btnEditar.setIcon(new ImageIcon("img\\editar.png"));
 		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -71,29 +72,36 @@ public class FrmTrabajador extends JFrame {
 				}
 			}
 		});
-		btnEditar.setBounds(298, 356, 89, 33);
+		btnEditar.setBounds(327, 356, 115, 33);
 		getContentPane().add(btnEditar);
 
 		JButton btnInfo = new JButton("Info");
+		btnInfo.setIcon(new ImageIcon("img\\info.png"));
 		btnInfo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				try {
+					controller.CtrlTrabajadores.infoTrabajador();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 
 			}
 		});
-		btnInfo.setBounds(424, 356, 99, 33);
+		btnInfo.setBounds(484, 356, 115, 33);
 		getContentPane().add(btnInfo);
 
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("Img\\FlyMasterSmall.png"));
-		lblNewLabel.setBounds(414, 218, 120, 120);
-		getContentPane().add(lblNewLabel);
-
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(91, 114, 352, 198);
+		scrollPane.setBounds(91, 31, 375, 268);
 		getContentPane().add(scrollPane);
 
 		tableTrabajador = new JTable();
 		scrollPane.setViewportView(tableTrabajador);
+		
+				JLabel lblLogo = new JLabel("");
+				lblLogo.setIcon(new ImageIcon("img\\NostromoSmall.jpg"));
+				lblLogo.setBounds(469, 112, 130, 130);
+				getContentPane().add(lblLogo);
 
 		setVisible(true);
 

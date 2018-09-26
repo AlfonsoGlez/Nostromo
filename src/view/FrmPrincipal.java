@@ -4,8 +4,12 @@ import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.net.URL;
 import java.sql.SQLException;
 
+import javax.help.HelpBroker;
+import javax.help.HelpSet;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -19,9 +23,10 @@ public class FrmPrincipal extends JFrame {
 	private static final long serialVersionUID = 1L;
 	protected static final String GUIproyecto = null;
 	public static JLabel lblEstado;
+	public static JMenuItem menuItemHelp;
 
 	public FrmPrincipal() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage("Img\\FlyMasterSmall.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("img\\230px-CM_Seal.png"));
 		getContentPane().setBackground(Color.WHITE);
 		initialize();
 	}
@@ -80,19 +85,49 @@ public class FrmPrincipal extends JFrame {
 		JMenuItem mntmEquipos = new JMenuItem("Equipos");
 		mntmEquipos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				controller.CtrlEquipos.inicio();
+				try {
+					controller.CtrlEquipos.inicio();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 		mnGestion.add(mntmEquipos);
 
+		JMenu Ayuda = new JMenu("Ayuda");
+		menuBar.add(Ayuda);
+
+		menuItemHelp = new JMenuItem("Abrir JavaHelp");
+		Ayuda.add(menuItemHelp);
+
 		JLabel Logo = new JLabel("");
-		Logo.setIcon(new ImageIcon("C:\\Users\\Alfonso\\Desktop\\Java\\Ind_Nostromo\\img\\Nostromo.jpg"));
+		Logo.setIcon(new ImageIcon("img\\Nostromo.jpg"));
 		Logo.setBounds(38, 61, 500, 500);
 		getContentPane().add(Logo);
 
 		lblEstado = new JLabel("");
 		lblEstado.setBounds(10, 32, 101, 27);
 		getContentPane().add(lblEstado);
+
+		cargarAyuda();
 		setVisible(true);
+	}
+
+	public void cargarAyuda() {
+		try {
+			// Carga el fichero de ayuda
+			File fichero = new File("proyecto/help/help.hs");
+			URL hsURL = fichero.toURI().toURL();
+
+			// Crea el HelpSet y el HelpBroker
+			HelpSet helpset = new HelpSet(getClass().getClassLoader(), hsURL);
+			HelpBroker hb = helpset.createHelpBroker();
+			// Pone ayuda a item de menu al pulsar F1. mntmIndice es el JMenuitem
+			hb.enableHelpOnButton(menuItemHelp, "manual", helpset);
+
+		} catch (Exception e) {
+			e.getMessage();
+		}
 	}
 }

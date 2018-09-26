@@ -14,6 +14,11 @@ public class DBsqlServer {
 
 	public static String cadenaConexion;
 
+	/**
+	 * Comprueba si se ha establecido o no la conexion
+	 * 
+	 * @return test
+	 */
 	public static boolean testConexion() {
 		boolean test = false;
 		try {
@@ -29,6 +34,10 @@ public class DBsqlServer {
 		return test;
 	}
 
+	/**
+	 * Crea la cadena de conexion con los parametros introducidos a mano desde el
+	 * cuadro de dialogo parametros.
+	 */
 	public static void crearCadenaConexion(String strIP, String strPort, String strDatabaseName, String strUserName,
 			String strUserPassword) {
 
@@ -42,17 +51,35 @@ public class DBsqlServer {
 		cadenaConexion = cadena;
 	}
 
+	/**
+	 * Manda la cadena de conexion para establecer dicha conexion con el servidor.
+	 * 
+	 * @return getConexion
+	 * @throws SQLException
+	 */
 	public static Connection establecerConexion() throws SQLException {
 		return DriverManager.getConnection(cadenaConexion);
 
 	}
 
+	/**
+	 * Cierra la conexion.
+	 * 
+	 * @param conn
+	 * @throws SQLException
+	 */
 	public static void cerrarConexion(Connection conn) throws SQLException {
 		conn.close();
 	}
 
+	/**
+	 * Ejecuta una consulta en SQL.
+	 * 
+	 * @param strSQL
+	 * @return rowset
+	 * @throws SQLException
+	 */
 	public static CachedRowSet consultaSQL(String strSQL) throws SQLException {
-
 		Connection c = databasemanager.DBsqlServer.establecerConexion();
 		Statement s = c.createStatement();
 		ResultSet r = s.executeQuery(strSQL);

@@ -3,7 +3,7 @@ package model;
 public class Proyecto {
 
 	private String Nombre;
-	private Integer Presupuesto;
+	private String Presupuesto;
 	private String FechaInicio;
 	private String FechaFin;
 
@@ -11,7 +11,7 @@ public class Proyecto {
 		super();
 	}
 
-	public Proyecto(String nombre, Integer presupuesto, String fechaInicio, String fechaFin) {
+	public Proyecto(String nombre, String presupuesto, String fechaInicio, String fechaFin) {
 		super();
 		Nombre = nombre;
 		Presupuesto = presupuesto;
@@ -23,7 +23,7 @@ public class Proyecto {
 		return Nombre;
 	}
 
-	public Integer getPresupuesto() {
+	public String getPresupuesto() {
 		return Presupuesto;
 	}
 
@@ -39,7 +39,7 @@ public class Proyecto {
 		Nombre = nombre;
 	}
 
-	public void setPresupuesto(Integer presupuesto) {
+	public void setPresupuesto(String presupuesto) {
 		Presupuesto = presupuesto;
 	}
 

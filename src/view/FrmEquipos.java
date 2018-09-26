@@ -11,18 +11,18 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class FrmEquipos extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	public static JComboBox proyectoBox;
-	static DefaultTableModel modelotabla;
-	DefaultTableModel modelo = new DefaultTableModel();
+	public static JComboBox<String> proyectoBox;
+	public static DefaultTableModel modelotabla;
+	public DefaultTableModel modelo = new DefaultTableModel();
+	public static JTable tableEquipo;
 
-	/**
-	 * Create the application.
-	 */
 	public FrmEquipos() {
 
 		initialize();
@@ -30,9 +30,6 @@ public class FrmEquipos extends JFrame {
 
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	private void initialize() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("Img\\FlyMasterSmall.png"));
 
@@ -46,8 +43,8 @@ public class FrmEquipos extends JFrame {
 		lblNewLabel.setBounds(59, 53, 43, 14);
 		getContentPane().add(lblNewLabel);
 
-		proyectoBox = new JComboBox();
-		proyectoBox.setModel(new DefaultComboBoxModel());
+		proyectoBox = new JComboBox<String>();
+		proyectoBox.setModel(new DefaultComboBoxModel<String>());
 		proyectoBox.setBounds(112, 50, 217, 20);
 		getContentPane().add(proyectoBox);
 
@@ -74,11 +71,17 @@ public class FrmEquipos extends JFrame {
 		editar.setBounds(317, 267, 107, 33);
 		getContentPane().add(editar);
 
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(112, 94, 217, 140);
+		getContentPane().add(scrollPane);
+
+		tableEquipo = new JTable();
+		scrollPane.setViewportView(tableEquipo);
+
 		JLabel lblicon = new JLabel("Icon");
-		lblicon.setBounds(313, 146, 120, 120);
-		lblicon.setIcon(new ImageIcon("Img\\FlyMasterSmall.png"));
+		lblicon.setBounds(294, 132, 130, 130);
+		lblicon.setIcon(new ImageIcon("C:\\Users\\Alfonso\\Desktop\\Java\\Ind_Nostromo\\img\\NostromoSmall.jpg"));
 		getContentPane().add(lblicon);
 
 	}
-
 }

@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -33,6 +34,7 @@ public class FrmProyecto extends JFrame {
 		btnNuevo.setIcon(new ImageIcon("Img\\A\u00F1adir.png"));
 		btnNuevo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				controller.CtrlProyectos.crearNuevoProyecto();
 			}
 		});
 		btnNuevo.setBounds(10, 382, 103, 33);
@@ -42,6 +44,12 @@ public class FrmProyecto extends JFrame {
 		btnBorrar.setIcon(new ImageIcon("Img\\Borrar.png"));
 		btnBorrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				try {
+					controller.CtrlProyectos.borrarProyecto();
+					controller.CtrlProyectos.rellenarProyecto();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 			}
 		});
 		btnBorrar.setBounds(152, 382, 103, 33);
@@ -51,6 +59,11 @@ public class FrmProyecto extends JFrame {
 		btnEditar.setIcon(new ImageIcon("Img\\Editar.png"));
 		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
+					controller.CtrlProyectos.editarProyecto();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnEditar.setBounds(288, 382, 103, 33);
@@ -60,6 +73,11 @@ public class FrmProyecto extends JFrame {
 		btnInfo.setIcon(new ImageIcon("Img\\info.png"));
 		btnInfo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				try {
+					controller.CtrlProyectos.infoProyecto();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 			}
 		});
 		btnInfo.setBounds(431, 382, 103, 33);
